@@ -1,0 +1,404 @@
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.73rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.panel,
+.metric-card,
+.sidebar-card {
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, rgba(255, 253, 250, 0.92), rgba(247, 243, 238, 0.94));
+  box-shadow: var(--shadow-panel);
+  border-radius: 28px;
+}
+
+.panel,
+.sidebar-card {
+  padding: 24px;
+}
+
+.metric-card {
+  padding: 20px;
+  border-radius: 22px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.section-header p {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--ink-body);
+}
+
+.metric-card p,
+.stat-card p,
+.helper-text,
+.token span,
+.progress-copy span,
+.data-table th,
+.select-field span,
+.range-head span,
+.module-card .eyebrow {
+  color: var(--ink-soft);
+}
+
+.metric-card div,
+.progress-copy,
+.range-head,
+.module-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.metric-card strong,
+.stat-card strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.95rem;
+  letter-spacing: -0.04em;
+}
+
+.stat-card strong,
+.stat-card span {
+  display: block;
+}
+
+.stat-card strong {
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.stat-card span {
+  line-height: 1.45;
+}
+
+.metric-card.sicak strong {
+  color: var(--brand-deep);
+}
+
+.metric-card.soguk strong {
+  color: var(--cool);
+}
+
+.metric-card.dogal strong {
+  color: var(--ink-strong);
+}
+
+.metric-card span,
+.stat-card span,
+.module-meta span,
+.candidate-card span {
+  color: var(--ink-body);
+}
+
+.primary-button,
+.secondary-button,
+.segment,
+.layer-pill {
+  border-radius: 999px;
+  padding: 12px 18px;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.primary-button {
+  border: 1px solid transparent;
+  background: var(--ink-strong);
+  color: #fff;
+}
+
+.secondary-button,
+.segment,
+.layer-pill,
+.candidate-card {
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--ink-strong);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.segment:hover,
+.layer-pill:hover,
+.candidate-card:hover {
+  transform: translateY(-1px);
+}
+
+.segment.active,
+.layer-pill.active,
+.candidate-card.active {
+  border-color: rgba(157, 85, 59, 0.22);
+  background: rgba(250, 239, 232, 0.88);
+  color: var(--brand-deep);
+}
+
+.stats-row,
+.hero-highlight-grid,
+.layer-row,
+.segmented-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-highlight-grid .stat-card,
+.stats-row .stat-card {
+  flex: 1 1 200px;
+}
+
+.stat-card,
+.select-field,
+.range-field,
+.module-card,
+.report-card,
+.report-section,
+.telemetry-card,
+.summary-note-card,
+.forecast-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.68);
+  padding: 18px;
+}
+
+.select-field,
+.range-field {
+  display: grid;
+  gap: 10px;
+}
+
+.select-field select,
+.range-field input {
+  width: 100%;
+}
+
+.select-field select {
+  min-height: 52px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0 14px;
+  color: var(--ink-strong);
+}
+
+.range-field input {
+  accent-color: var(--brand);
+}
+
+.progress-block {
+  display: grid;
+  gap: 8px;
+}
+
+.progress-track {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(24, 33, 38, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--brand), #d9a182);
+}
+
+.status-list {
+  display: grid;
+  gap: 2px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.status-row:last-child {
+  border-bottom: 0;
+}
+
+.status-row strong,
+.data-table td:first-child,
+.timeline strong,
+.candidate-card strong,
+.report-section strong {
+  color: var(--ink-strong);
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.badge.success {
+  background: rgba(74, 112, 91, 0.12);
+  color: var(--success);
+}
+
+.badge.warning {
+  background: rgba(169, 115, 63, 0.14);
+  color: var(--warning);
+}
+
+.badge.info {
+  background: rgba(77, 115, 132, 0.14);
+  color: var(--cool);
+}
+
+.detail-list,
+.timeline {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.72;
+  color: var(--ink-body);
+}
+
+.timeline li {
+  margin-bottom: 14px;
+}
+
+.timeline p {
+  margin: 6px 0 0;
+  color: var(--ink-body);
+}
+
+.info-list,
+.candidate-list {
+  display: grid;
+  gap: 12px;
+}
+
+.info-pair {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.info-pair:last-child {
+  border-bottom: 0;
+}
+
+.candidate-card {
+  padding: 14px;
+  border-radius: 18px;
+  text-align: left;
+}
+
+.telemetry-card,
+.summary-note-card,
+.forecast-card {
+  display: grid;
+  gap: 8px;
+}
+
+.telemetry-card span,
+.summary-note-card strong,
+.forecast-card span,
+.forecast-card strong {
+  color: var(--ink-strong);
+}
+
+.telemetry-card span,
+.forecast-card p,
+.summary-note-card p {
+  margin: 0;
+}
+
+.telemetry-card span {
+  color: var(--ink-soft);
+}
+
+.telemetry-card strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+}
+
+.telemetry-card p,
+.summary-note-card p,
+.forecast-card p {
+  color: var(--ink-body);
+  line-height: 1.6;
+}
+
+.candidate-card strong,
+.candidate-card span {
+  display: block;
+}
+
+.mars-viewer-header {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mars-viewer-header h4 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.mars-viewer-header p:last-child {
+  margin: 0;
+  color: var(--ink-body);
+  line-height: 1.6;
+}
+
+.module-card h4,
+.sidebar-card h3 {
+  margin: 0 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.module-meta {
+  margin-top: 14px;
+  font-size: 0.92rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.helper-text,
+.footer-note,
+.sidebar-card p:last-child,
+.report-card p,
+.report-section p {
+  color: var(--ink-body);
+}
+
+.footer-note {
+  font-size: 0.92rem;
+  padding-bottom: 18px;
+}

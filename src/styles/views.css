@@ -1,0 +1,873 @@
+.hero-panel {
+  min-height: 280px;
+}
+
+.mars-overview-panel {
+  min-height: 760px;
+}
+
+.hero-panel .lead {
+  max-width: 60ch;
+  font-size: 1.04rem;
+  line-height: 1.74;
+  color: var(--ink-body);
+}
+
+.quick-setup-panel {
+  background: linear-gradient(180deg, rgba(241, 229, 220, 0.96), rgba(248, 244, 238, 0.96));
+}
+
+.mars-panel {
+  min-height: 700px;
+}
+
+.mars-globe {
+  position: relative;
+  min-height: 520px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.18), transparent 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.16), transparent 0 2px, transparent 3px),
+    radial-gradient(circle at 18% 76%, rgba(255, 255, 255, 0.13), transparent 0 2px, transparent 3px),
+    linear-gradient(180deg, rgba(14, 14, 22, 0.98), rgba(35, 20, 18, 0.98));
+  border: 1px solid var(--border-soft);
+  overflow: hidden;
+}
+
+.mars-model-shell {
+  --mars-accent: rgba(255, 158, 112, 0.22);
+  --mars-shadow: rgba(27, 13, 11, 0.78);
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255, 163, 116, 0.26), transparent 0 28%),
+    radial-gradient(circle at 50% 86%, rgba(255, 132, 84, calc(var(--mars-glow-opacity, 0.72) * 0.24)), transparent 0 20%),
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.06), transparent 0 20%),
+    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.05), transparent 0 18%),
+    linear-gradient(180deg, rgba(11, 11, 18, 0.96), rgba(31, 18, 16, 0.94)),
+    linear-gradient(135deg, var(--mars-shadow), transparent 58%);
+}
+
+.mars-viewer-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.mars-viewer-host {
+  width: 100%;
+  height: 100%;
+}
+
+.mars-viewer-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.mars-viewer-pin-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.mars-viewer-status {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(250, 243, 237, 0.84);
+  backdrop-filter: blur(10px);
+  color: var(--ink-strong);
+  box-shadow: var(--shadow-soft);
+  z-index: 3;
+}
+
+.mars-viewer-status span {
+  color: var(--ink-body);
+  line-height: 1.5;
+}
+
+.mars-viewer-status-error {
+  background: rgba(255, 241, 236, 0.9);
+  border: 1px solid rgba(157, 85, 59, 0.18);
+}
+
+.mars-overlay-glow {
+  position: absolute;
+  inset: auto 8% 3% 8%;
+  height: 22%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 173, 123, calc(var(--mars-glow-opacity, 0.72) * 0.34)), transparent 44%),
+    radial-gradient(circle, rgba(96, 51, 34, 0.28), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.planet-core {
+  position: absolute;
+  inset: 60px 110px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.9), transparent 16%),
+    radial-gradient(circle at 66% 64%, rgba(138, 78, 55, 0.18), transparent 18%),
+    radial-gradient(circle at 50% 45%, #cf8f6c 0%, #c77955 34%, #a65d42 72%, #8a4c37 100%);
+  box-shadow: inset -28px -24px 56px rgba(78, 41, 25, 0.28);
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.ring-one {
+  inset: 34px 84px;
+}
+
+.ring-two {
+  inset: 14px 58px;
+}
+
+.region-pin {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 251, 247, 0.9);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--ink-strong);
+  box-shadow: var(--shadow-soft);
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.region-pin.selected {
+  border-color: rgba(216, 132, 88, 0.58);
+  color: var(--brand-deep);
+  background: rgba(255, 237, 226, 0.96);
+  box-shadow:
+    0 14px 30px rgba(78, 35, 23, 0.24),
+    0 0 0 1px rgba(255, 181, 145, 0.18);
+}
+
+.region-pin:hover {
+  transform: translateY(-2px);
+}
+
+.mars-active-layer-indicator {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  z-index: 4;
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(18, 14, 19, 0.68);
+  border: 1px solid rgba(255, 189, 151, 0.16);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 240, 229, 0.96);
+}
+
+.mars-active-layer-indicator span {
+  color: rgba(255, 226, 208, 0.72);
+  font-size: 0.9rem;
+}
+
+.mars-layer-insight-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(180px, 0.6fr) minmax(220px, 0.9fr);
+  gap: 14px;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(157, 85, 59, 0.14);
+  background: linear-gradient(180deg, rgba(255, 250, 245, 0.96), rgba(247, 239, 232, 0.94));
+  box-shadow: var(--shadow-soft);
+}
+
+.mars-layer-insight-card h5,
+.mars-layer-insight-card p {
+  margin: 0;
+}
+
+.mars-layer-insight-card p {
+  color: var(--ink-body);
+  line-height: 1.6;
+}
+
+.mars-layer-insight-metric,
+.mars-layer-insight-action {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(157, 85, 59, 0.1);
+}
+
+.mars-layer-insight-metric span,
+.mars-layer-insight-action span {
+  color: var(--ink-soft);
+}
+
+.mars-layer-insight-metric strong {
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--brand-deep);
+}
+
+.mars-layer-insight-action strong {
+  line-height: 1.5;
+  color: var(--ink-strong);
+}
+
+.mars-model-shell.layer-buz-damari,
+.mars-model-shell.layer-buz,
+.mars-model-shell.layer-yuzey-alti-regolit {
+  --mars-accent: rgba(137, 204, 255, 0.22);
+  --mars-shadow: rgba(12, 20, 31, 0.74);
+}
+
+.mars-model-shell.layer-korunakli-plato,
+.mars-model-shell.layer-ek-koruma-zonu {
+  --mars-accent: rgba(255, 210, 153, 0.2);
+}
+
+.mars-model-shell.layer-genisleme-cepleri,
+.mars-model-shell.layer-sinirli-genisleme-cebi {
+  --mars-accent: rgba(255, 146, 121, 0.22);
+}
+
+.mars-model-shell.layer-solar-tarla-omurgasi {
+  --mars-accent: rgba(255, 220, 126, 0.24);
+  --mars-shadow: rgba(49, 30, 10, 0.72);
+}
+
+.mars-model-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, var(--mars-accent), transparent 0 24%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 0 34%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mars-model-shell.layer-yuzey-alti-regolit::before {
+  background:
+    linear-gradient(180deg, rgba(118, 88, 71, 0.14), transparent 36%),
+    radial-gradient(circle at 50% 50%, var(--mars-accent), transparent 0 24%);
+}
+
+.mars-model-shell.layer-korunakli-plato::before,
+.mars-model-shell.layer-ek-koruma-zonu::before {
+  background:
+    radial-gradient(circle at 50% 50%, var(--mars-accent), transparent 0 24%),
+    linear-gradient(90deg, transparent 0 24%, rgba(255, 228, 196, 0.08) 24% 28%, transparent 28% 100%);
+}
+
+.mars-model-shell.layer-genisleme-cepleri::before,
+.mars-model-shell.layer-sinirli-genisleme-cebi::before {
+  background:
+    radial-gradient(circle at 42% 54%, rgba(255, 149, 120, 0.18), transparent 0 18%),
+    radial-gradient(circle at 60% 46%, var(--mars-accent), transparent 0 18%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05), transparent 0 34%);
+}
+
+.mars-model-shell.layer-solar-tarla-omurgasi::before {
+  background:
+    linear-gradient(90deg,
+      transparent 0 32%,
+      rgba(255, 222, 135, 0.16) 32% 36%,
+      transparent 36% 64%,
+      rgba(255, 222, 135, 0.12) 64% 68%,
+      transparent 68% 100%),
+    radial-gradient(circle at 50% 50%, var(--mars-accent), transparent 0 24%);
+}
+
+.mars-model-shell::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 237, 225, 0.08);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wizard-step {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid var(--border-soft);
+}
+
+.wizard-step span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(24, 33, 38, 0.08);
+  color: var(--ink-strong);
+}
+
+.wizard-step.complete span,
+.wizard-step.active span {
+  background: var(--brand);
+  color: white;
+}
+
+.wizard-step.active {
+  border-color: rgba(157, 85, 59, 0.26);
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.heat-cell {
+  min-height: 84px;
+  border-radius: 18px;
+  border: 1px solid rgba(156, 84, 73, 0.18);
+  background: rgba(199, 110, 77, 0.22);
+  display: grid;
+  place-items: center;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.report-card,
+.report-section {
+  line-height: 1.8;
+}
+
+.telemetry-summary-grid,
+.forecast-list {
+  display: grid;
+  gap: 12px;
+}
+
+.telemetry-summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.forecast-head,
+.forecast-metrics,
+.report-action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.forecast-card {
+  background: linear-gradient(180deg, rgba(255, 252, 249, 0.82), rgba(245, 236, 228, 0.82));
+}
+
+.forecast-head span {
+  color: var(--ink-soft);
+}
+
+.forecast-metrics span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--ink-body);
+}
+
+.summary-note-card {
+  background: linear-gradient(180deg, rgba(255, 251, 246, 0.94), rgba(244, 236, 229, 0.9));
+}
+
+.professor-summary-card {
+  background:
+    radial-gradient(circle at top right, rgba(213, 127, 92, 0.12), transparent 0 28%),
+    linear-gradient(180deg, rgba(255, 249, 243, 0.98), rgba(245, 235, 226, 0.96));
+}
+
+.report-section-featured {
+  background:
+    radial-gradient(circle at top right, rgba(124, 167, 186, 0.12), transparent 0 32%),
+    linear-gradient(180deg, rgba(252, 253, 255, 0.98), rgba(239, 244, 247, 0.96));
+}
+
+.professor-summary-head {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.professor-summary-head div {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(157, 85, 59, 0.12);
+}
+
+.professor-summary-head span {
+  color: var(--ink-soft);
+}
+
+.professor-summary-head strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  color: var(--ink-strong);
+}
+
+.professor-notes-grid,
+.professor-notes-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.professor-notes-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.professor-note-card,
+.professor-note-row {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(157, 85, 59, 0.12);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 254, 252, 0.96), rgba(245, 239, 233, 0.94));
+}
+
+.professor-note-card::before,
+.professor-note-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: rgba(157, 85, 59, 0.2);
+}
+
+.professor-note-card {
+  padding: 18px;
+}
+
+.professor-note-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+}
+
+.professor-note-row-main {
+  display: grid;
+  gap: 14px;
+  padding: 18px 18px 18px 6px;
+}
+
+.professor-note-index {
+  display: grid;
+  place-items: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.25rem;
+  color: var(--brand-deep);
+  background: linear-gradient(180deg, rgba(255, 242, 233, 0.9), rgba(249, 237, 228, 0.7));
+  border-right: 1px solid rgba(157, 85, 59, 0.08);
+}
+
+.professor-note-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+
+.professor-note-head strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.25;
+  color: var(--ink-strong);
+}
+
+.professor-note-head span {
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: rgba(24, 33, 38, 0.06);
+  color: var(--ink-strong);
+}
+
+.professor-note-body,
+.professor-note-row-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.professor-note-block {
+  display: grid;
+  gap: 8px;
+  padding: 14px 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(157, 85, 59, 0.08);
+}
+
+.professor-note-block small {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.professor-note-block p,
+.professor-note-compact-copy p {
+  margin: 0;
+  color: var(--ink-body);
+  line-height: 1.6;
+}
+
+.professor-note-block-solution {
+  background: linear-gradient(180deg, rgba(247, 241, 234, 0.98), rgba(241, 232, 222, 0.98));
+}
+
+.professor-note-card-compact {
+  padding: 16px;
+}
+
+.professor-note-compact-copy {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.severity-kritik::before {
+  background: linear-gradient(180deg, #9f3f31, #d76d57);
+}
+
+.severity-kritik .professor-note-head span {
+  background: rgba(159, 63, 49, 0.12);
+  color: #8c2e20;
+}
+
+.severity-yuksek::before {
+  background: linear-gradient(180deg, #a86a28, #d19956);
+}
+
+.severity-yuksek .professor-note-head span {
+  background: rgba(168, 106, 40, 0.12);
+  color: #8b571f;
+}
+
+.severity-orta::before {
+  background: linear-gradient(180deg, #5a7485, #88a7ba);
+}
+
+.severity-orta .professor-note-head span {
+  background: rgba(90, 116, 133, 0.12);
+  color: #476172;
+}
+
+.report-action-row {
+  margin-top: 18px;
+}
+
+.report-detail-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.98), rgba(244, 236, 228, 0.96)),
+    radial-gradient(circle at top right, rgba(214, 132, 95, 0.08), transparent 0 24%);
+}
+
+.report-highlight-strip,
+.report-detail-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.report-highlight-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+
+.report-highlight-card,
+.report-detail-card {
+  border: 1px solid rgba(157, 85, 59, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-soft);
+}
+
+.report-highlight-card {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 20px;
+}
+
+.report-highlight-card span,
+.report-detail-index {
+  width: fit-content;
+  min-width: 42px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--brand-deep);
+  background: rgba(214, 132, 95, 0.12);
+}
+
+.report-highlight-card strong,
+.report-detail-copy strong {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink-strong);
+}
+
+.report-highlight-card p,
+.report-detail-copy p {
+  margin: 0;
+  color: var(--ink-body);
+  line-height: 1.7;
+}
+
+.report-detail-stack {
+  position: relative;
+}
+
+.report-detail-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.report-detail-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.report-actions-panel {
+  background:
+    linear-gradient(180deg, rgba(252, 251, 247, 0.98), rgba(243, 236, 229, 0.94));
+}
+
+.analiz-brief-banner {
+  background: linear-gradient(180deg, rgba(237, 248, 255, 0.92), rgba(240, 244, 248, 0.94));
+  border-color: rgba(77, 115, 132, 0.16);
+}
+
+.analiz-brief-banner .stats-grid {
+  gap: 12px;
+}
+
+/* ── Analiz Hesaplama Overlay ── */
+
+.analiz-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(18, 14, 12, 0.72);
+  backdrop-filter: blur(14px);
+  animation: analiz-fade-in 320ms ease;
+}
+
+@keyframes analiz-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.analiz-overlay-content {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  text-align: center;
+  max-width: 440px;
+  padding: 48px 36px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(247, 240, 234, 0.97));
+  border: 1px solid rgba(157, 85, 59, 0.18);
+  box-shadow:
+    0 24px 64px rgba(18, 12, 8, 0.38),
+    0 0 0 1px rgba(255, 237, 225, 0.12);
+  animation: analiz-card-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes analiz-card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.analiz-overlay-content h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  color: var(--ink-strong);
+}
+
+.analiz-overlay-content p {
+  margin: 0;
+  color: var(--ink-body);
+  line-height: 1.65;
+}
+
+.analiz-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(157, 85, 59, 0.16);
+  border-top-color: var(--brand, #c77955);
+  animation: analiz-spin 0.8s linear infinite;
+}
+
+@keyframes analiz-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.analiz-steps {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.analiz-step {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  background: rgba(24, 33, 38, 0.06);
+  color: var(--ink-soft);
+  transition: all 280ms ease;
+}
+
+.analiz-step.active {
+  background: rgba(199, 121, 85, 0.16);
+  color: var(--brand-deep, #6b3926);
+  animation: analiz-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes analiz-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ── Analiz CTA Panel ── */
+
+.analiz-action-panel {
+  background: linear-gradient(180deg, rgba(255, 248, 242, 0.96), rgba(244, 234, 226, 0.96));
+  border-color: rgba(157, 85, 59, 0.18);
+}
+
+.analiz-baslat-button {
+  margin-top: 8px;
+  padding: 16px 24px;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.analiz-baslat-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+@media (max-width: 760px) {
+
+  .panel,
+  .sidebar-card,
+  .metric-card {
+    border-radius: 22px;
+  }
+
+  .planet-core {
+    inset: 110px 30px;
+  }
+
+  .ring-one {
+    inset: 76px 10px;
+  }
+
+  .ring-two {
+    inset: 44px -12px;
+  }
+
+  .mars-layer-insight-card {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetry-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .professor-summary-head,
+  .professor-notes-grid,
+  .professor-note-body,
+  .professor-note-row-grid,
+  .report-highlight-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .professor-note-row,
+  .report-detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .professor-note-index,
+  .report-detail-index {
+    min-height: 48px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(157, 85, 59, 0.08);
+  }
+
+  .forecast-head,
+  .forecast-metrics {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
